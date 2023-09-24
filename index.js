@@ -8,7 +8,7 @@ app.get("/", function (req, res) {
     res.json("Server response");
 });
 app.post("/", function (req, res) {
-    res.json("server post response");
+    res.json(req.body);
 });
 app.listen(3000, function () {
     console.log("Server online");
