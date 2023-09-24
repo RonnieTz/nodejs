@@ -1,15 +1,11 @@
-var express = require("express");
-var cors = require("cors");
-var bodyParser = require("body-parser");
-var app = express();
-app.use(cors());
-app.use(bodyParser.json());
-app.get("/", function (req, res) {
-    res.json("Server response");
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var socket_io_1 = require("socket.io");
+var io = new socket_io_1.Server(3001, {
+    cors: {
+        origin: ["http://localhost:3000", "https://thequizgame.vercel.app/"],
+    },
 });
-app.post("/", function (req, res) {
-    res.json(req.body);
-});
-app.listen(3000, function () {
-    console.log("Server online");
+io.on("connection", function (socket) {
+    console.log("User ".concat(socket.id, " connected."));
 });
