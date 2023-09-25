@@ -1,3 +1,4 @@
+import { Socket } from "dgram";
 import { Server } from "socket.io";
 const io = new Server(3001, {
   cors: {
@@ -7,4 +8,8 @@ const io = new Server(3001, {
 
 io.on("connection", (socket) => {
   console.log(`User ${socket.id} connected.`);
+});
+
+io.on("message", (message) => {
+  io.emit("message", message);
 });
