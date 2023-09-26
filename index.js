@@ -1,14 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var socket_io_1 = require("socket.io");
-var io = new socket_io_1.Server(3001, {
-    cors: {
-        origin: ["http://localhost:3000", "https://thequizgame.vercel.app", "*"],
-    },
+const app = require("express")();
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
+
+io.on("connection", (socket) => {
+  socket.emit("connect", { message: `Client ${socket.id} connected.` });
 });
-io.on("connection", function (socket) {
-    console.log("User ".concat(socket.id, " connected."));
+
+app.get("/", (req, res) => {
+  res.json("Server response");
 });
-io.on("message", function (message) {
-    io.emit("message", message);
+
+server.listen(3001, () => {
+  console.log("Server online");
 });
