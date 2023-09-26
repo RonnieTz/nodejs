@@ -1,8 +1,7 @@
-import { Socket } from "dgram";
 import { Server } from "socket.io";
 const io = new Server(3001, {
   cors: {
-    origin: ["http://localhost:3000", "https://thequizgame.vercel.app/"],
+    origin: ["http://localhost:3000", "https://thequizgame.vercel.app/", "*"],
   },
 });
 
