@@ -9,6 +9,6 @@ io.on("connection", (socket) => {
   console.log(`User ${socket.id} connected.`);
 });
 
-io.on("message", (message) => {
-  io.emit("message", message);
+io.on("data", (message) => {
+  io.emit("data", message);
 });
