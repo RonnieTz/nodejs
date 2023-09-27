@@ -1,6 +1,6 @@
 const app = require("express")();
 const http = require("http").createServer(app, { cors: { origin: "*" } });
-const io = require("socket.io")(http);
+const io = require("socket.io")(http, { cors: { origin: "*" } });
 
 io.on("connection", (socket) => {
   console.log(socket.id);
