@@ -1,34 +1,11 @@
 const app = require("express")();
-const server = require("http").createServer(app, {
-  cors: {
-    origin: [
-      "https://thequizgame.vercel.app/",
-      "https://thequizgame.vercel.app",
-      "*",
-    ],
-    "Access-Control-Allow-Origin": "*",
-  },
-});
-const io = require("socket.io")(server, {
-  cors: {
-    origin: [
-      "https://thequizgame.vercel.app/",
-      "https://thequizgame.vercel.app",
-      "*",
-    ],
-    "Access-Control-Allow-Origin": "*",
-  },
-});
-const cors = require("cors");
+const http = require("http").createServer(app, { cors: { origin: "*" } });
+const io = require("socket.io")(http);
 
 io.on("connection", (socket) => {
-  socket.emit("connect", { message: `Client ${socket.id} connected.` });
+  console.log(socket.id);
 });
 
-app.get("/", (req, res) => {
-  res.json("Server response");
-});
-
-server.listen(3001, () => {
-  console.log("Server online");
+http.listen(3000, () => {
+  console.log("server online");
 });
