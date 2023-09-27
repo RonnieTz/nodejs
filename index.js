@@ -6,12 +6,14 @@ const bodyParser = require("body-parser");
 
 app.use(cors({ origin: "*" }));
 app.use(bodyParser.json());
+app.set("io", io);
 
 io.on("connection", (socket) => {
   console.log(socket.id);
 });
 
 app.post("/", (req, res) => {
+  io.emit("data", req.body);
   res.json(req.body);
 });
 
