@@ -16,6 +16,10 @@ app.post("/", (req, res) => {
   io.emit("data", req.body);
   res.json(req.body);
 });
+app.post("/rooms", (req, res) => {
+  io.emit("rooms", req.body);
+  res.json(req.body);
+});
 
 http.listen(3000, () => {
   console.log("server online");
