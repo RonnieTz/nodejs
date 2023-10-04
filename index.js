@@ -23,9 +23,8 @@ app.post("/rooms", (req, res) => {
 });
 
 app.post("/adduser", (req, res) => {
-  const { rooms } = req.body;
   io.emit("adduser");
-  res.json(rooms);
+  res.json(req.body);
 });
 
 http.listen(3001, () => {
