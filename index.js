@@ -21,6 +21,11 @@ app.post("/rooms", (req, res) => {
   res.json(req.body);
 });
 
+app.post("adduser", (req, res) => {
+  io.emit("adduser", req.body);
+  res.json(req.body);
+});
+
 http.listen(3000, () => {
   console.log("server online");
 });
