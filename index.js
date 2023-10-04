@@ -17,15 +17,17 @@ app.post("/", (req, res) => {
   res.json(req.body);
 });
 app.post("/rooms", (req, res) => {
+  console.log(req.body);
   io.emit("rooms", req.body);
   res.json(req.body);
 });
 
 app.post("/adduser", (req, res) => {
-  io.emit("adduser", req.body);
-  res.json(req.body);
+  const { rooms } = req.body;
+  io.emit("adduser");
+  res.json(rooms);
 });
 
-http.listen(3000, () => {
+http.listen(3001, () => {
   console.log("server online");
 });
