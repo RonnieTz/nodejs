@@ -21,7 +21,7 @@ app.post("/rooms", (req, res) => {
   res.json(req.body);
 });
 
-app.post("adduser", (req, res) => {
+app.post("/adduser", (req, res) => {
   io.emit("adduser", req.body);
   res.json(req.body);
 });
