@@ -1,9 +1,13 @@
-import { Express } from "express";
-const app: Express = require("express")();
-const http = require("http").createServer(app, { cors: { origin: "*" } });
+import express from "express";
+import { createServer } from "http";
+const app: express.Application = require("express")();
+// const http = require("http").createServer(app, { cors: { origin: "*" } });
 import { Server } from "socket.io";
 import cors from "cors";
 import bodyParser from "body-parser";
+// const app: express.Application = express();
+const http = createServer(app);
+
 const io = new Server(http, { cors: { origin: "*" } });
 
 app.use(cors({ origin: "*", methods: ["POST", "GET"] }));

@@ -1,6 +1,6 @@
-const app = require("express")();
-const http = require("http").createServer(app, { cors: { origin: "*" } });
-import { Server } from "socket.io";
+// const app = require("express")();
+// const http = require("http").createServer(app, { cors: { origin: "*" } });
+import express, { Server } from "socket.io";
 import cors from "cors";
 import bodyParser from "body-parser";
 const io = new Server(http, { cors: { origin: "*" } });
@@ -8,22 +8,22 @@ app.use(cors({ origin: "*", methods: ["POST", "GET"] }));
 app.use(bodyParser.json());
 app.set("io", io);
 io.on("connection", (socket) => {
-    console.log(socket.id);
+  console.log(socket.id);
 });
 app.post("/", (req, res) => {
-    io.emit("data", req.body);
-    res.json(req.body);
+  io.emit("data", req.body);
+  res.json(req.body);
 });
 app.post("/rooms", (req, res) => {
-    console.log(req.body);
-    io.emit("rooms", req.body);
-    res.json(req.body);
+  console.log(req.body);
+  io.emit("rooms", req.body);
+  res.json(req.body);
 });
 app.post("/adduser", (req, res) => {
-    io.emit("adduser");
-    res.json(req.body);
+  io.emit("adduser");
+  res.json(req.body);
 });
 http.listen(3001, () => {
-    console.log("server online");
+  console.log("server online");
 });
 //# sourceMappingURL=index.js.map
