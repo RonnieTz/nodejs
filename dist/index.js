@@ -45,6 +45,14 @@ app.post("/adduser", (req, res) => {
     io.emit("rooms", rooms);
     res.json(rooms);
 });
+app.post("/exitroom", (req, res) => {
+    const { user, room } = req.body;
+    const roomIndex = rooms.findIndex((item) => item.id === room);
+    const userIndex = rooms[roomIndex].users.findIndex((item) => item.name === user);
+    rooms[roomIndex].users.splice(userIndex, 1);
+    io.emit("rooms", rooms);
+    res.json(rooms);
+});
 app.post("/updatescore", (req, res) => {
     const { roomID, userName, score, correctAnswers, } = req.body;
     const index = rooms?.findIndex((room) => room.id === roomID);
