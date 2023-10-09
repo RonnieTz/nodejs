@@ -1,10 +1,11 @@
 export class Room {
-    constructor(name, rules, questions, id) {
+    constructor(name, rules, questions, id, creator) {
         this.name = name;
         this.rules = rules;
         this.users = [];
         this.questions = questions;
         this.id = id;
+        this.creator = creator;
     }
     addUser(name) {
         this.users.push({

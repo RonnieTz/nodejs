@@ -28,12 +28,13 @@ app.get("/rooms", (req, res) => {
     res.json(rooms);
 });
 app.post("/rooms", async (req, res) => {
-    const { name, number, category, difficulty, id, } = req.body;
-    const room = await roomCreator(name, { number, category, difficulty }, id);
+    const { name, number, category, difficulty, id, creator, } = req.body;
+    const room = await roomCreator(name, { number, category, difficulty }, id, creator);
     if (rooms.every((item) => item.id !== room.id)) {
         rooms.push(room);
     }
     io.emit("rooms", rooms);
+    console.log(req.body);
     res.json(rooms);
 });
 app.post("/adduser", (req, res) => {

@@ -65,6 +65,8 @@ app.post("/rooms", async (req, res) => {
     rooms.push(room);
   }
   io.emit("rooms", rooms);
+  console.log(req.body);
+
   res.json(rooms);
 });
 
