@@ -71,6 +71,17 @@ app.post("/adduser", (req, res) => {
   res.json(rooms);
 });
 
+app.post("/exitroom", (req, res) => {
+  const { user, room }: { user: string; room: string } = req.body;
+  const roomIndex = rooms.findIndex((item) => item.id === room);
+  const userIndex = rooms[roomIndex].users.findIndex(
+    (item) => item.name === user
+  );
+  rooms[roomIndex].users.splice(userIndex, 1);
+  io.emit("rooms", rooms);
+  res.json(rooms);
+});
+
 app.post("/updatescore", (req, res) => {
   const {
     roomID,
