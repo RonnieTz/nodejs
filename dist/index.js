@@ -54,7 +54,7 @@ app.post("/exitroom", (req, res) => {
     io.emit("rooms", rooms);
     res.json(rooms);
 });
-app.post("deleteroom", (req, res) => {
+app.post("/deleteroom", (req, res) => {
     const { room } = req.body;
     const index = rooms.findIndex((item) => item.id === room);
     rooms.splice(index, 1);
