@@ -19,13 +19,21 @@ export class Room {
   users: User[];
   questions: Question[];
   id: string;
+  creator: string;
 
-  constructor(name: string, rules: Rules, questions: Question[], id: string) {
+  constructor(
+    name: string,
+    rules: Rules,
+    questions: Question[],
+    id: string,
+    creator: string
+  ) {
     this.name = name;
     this.rules = rules;
     this.users = [];
     this.questions = questions;
     this.id = id;
+    this.creator = creator;
   }
 
   addUser(name: string) {

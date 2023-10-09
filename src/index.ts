@@ -46,14 +46,21 @@ app.post("/rooms", async (req, res) => {
     category,
     difficulty,
     id,
+    creator,
   }: {
     name: string;
     number: number;
     category: number;
     difficulty: string;
     id: string;
+    creator: string;
   } = req.body;
-  const room = await roomCreator(name, { number, category, difficulty }, id);
+  const room = await roomCreator(
+    name,
+    { number, category, difficulty },
+    id,
+    creator
+  );
   if (rooms.every((item) => item.id !== room.id)) {
     rooms.push(room);
   }
