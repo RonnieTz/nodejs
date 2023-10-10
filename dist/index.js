@@ -58,7 +58,7 @@ app.post("/deleteroom", (req, res) => {
     const { room } = req.body;
     const index = rooms.findIndex((item) => item.id === room);
     rooms.splice(index, 1);
-    io.emit("rooms", rooms);
+    io.emit("deleteroom", rooms);
     res.json(rooms);
 });
 app.post("/updatescore", (req, res) => {
